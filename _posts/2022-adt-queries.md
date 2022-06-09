@@ -9,57 +9,40 @@ Hi there!
 
 With the release of [16.1.1](https://github.com/zpl-c/zpl/releases/tag/16.1.1) version of zpl you are now able to perform URI like queries on ADT nodes.
 
+## New functionality
+
 The new function `zpl_adt_get` takes a URI which specifies how we should perform a lookup on an ADT node. The following features are present:
 
-* nested lookup 
-  * `a/b/c` would look through nodes to fetch the `c` node.
+* nested lookup
+  * `"a/b/c"` would look through nodes to fetch the `c` node.
 * nested conditional lookup
-  * `arr/[foo=123]/bar` would scan the `arr` array node to find an object element which field `foo` would be of value `123`, it would then fetch a node inside called `bar`.
+  * `"arr/[foo=123]/bar"` would scan the `arr` array node to find an object element which field `foo` would be of value `123`, it would then fetch a node inside called `bar`.
 * index-based lookup
-  * `arr/3` would fetch the 4th element of array node `arr`.
+  * `"arr/3"` would fetch the 4th element of array node `arr`.
 * value-based lookup
-  * `arr/[apple]` would fetch an element of array node `arr` with value `apple`.
+  * `"arr/[apple]"` would fetch an element of array node `arr` with value `apple`.
 
-The following code showcases this new feature:
+Example call:
 ```c
-#define ZPL_IMPLEMENTATION
-#define ZPL_NANO
-#define ZPL_ENABLE_PARSER
-#include <zpl.h>
-
-int main(void) {
-    zpl_file_contents fc;
-    fc = zpl_file_read_contents(zpl_heap(), true, "misc/data/glsl_diffuse.json5");
-
-    zpl_json_object root = {0};
-
-    zpl_u8 err;
-    err = zpl_json_parse(&root, (char *)fc.data, zpl_heap_allocator());
-    zpl_printf("Error code: %d\n", err);
-
-    zpl_json_object *nested_node_variant = zpl_adt_get(&root, "layer1/layer2/layer3");
-    ZPL_ASSERT_NOT_NULL(nested_node_variant);
-    ZPL_ASSERT(nested_node_variant->integer == 42);
-
-    zpl_json_object *def_value_node = zpl_adt_get(&root, "uniforms/[name=distort]/layout/[pos=y]/default_value");
-    ZPL_ASSERT_NOT_NULL(def_value_node);
-
-    zpl_json_object *num_42_node = zpl_adt_get(&root, "numbers/[value=42]");
-    ZPL_ASSERT_NOT_NULL(num_42_node);
-
-    zpl_json_object *arr_idx_node = zpl_adt_get(&root, "array/3");
-    ZPL_ASSERT_NOT_NULL(arr_idx_node);
-    ZPL_ASSERT(arr_idx_node->integer == 4);
-
-    zpl_json_object *arr_val_node = zpl_adt_get(&root, "array/[4]");
-    ZPL_ASSERT_NOT_NULL(arr_val_node);
-
-    zpl_json_free(&root);
-    zpl_file_free_contents(&fc);
-    return 0;
+{
+  zpl_json_object *node = zpl_adt_get(document, "foo/bar/baz");
+  // node variable is now a pointer to the node called `baz` or null pointer if lookup has failed.
 }
 ```
 
-We also plan to implement a sscanf alike addition to this API later on, stay tuned!
+As we can see, this new function reduces the amount of code needed to perform lookups on ADT nodes. It is also much more readable and easy to understand.
+We also plan to implement a sscanf alike addition to this API later on, example:
+```c
+{
+  zpl_adt_get(obj, "/settings/title:%s/x:%d/y:%d/modes/[name=enhanced]:%n", title_str, &x, &y, node_ptr);
+}
+```
+
+Feel free to check out the [json_get.c](https://github.com/zpl-c/zpl/blob/master/code/apps/examples/json_get.c) example code.
+
+## Parser improvements
+
+The new version also offers an ability to disable extra parsing logic to reduce memory footprint and improve parsing speed,
+the macro switch responsible for this change is `ZPL_PARSER_DISABLE_ANALYSIS`. Note it strips certain features that would ensure data format consistency on exports, use only when you want to perform fast raw imports!
 
 See you next time!
