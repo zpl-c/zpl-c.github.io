@@ -1,67 +1,51 @@
-# Gesko
+# A statically generated blog example using Next.js and Markdown
 
-Simple and minimal Jekyll blog. 
-Forked from [Asko](https://github.com/manuelmazzuola/asko).
-Original theme from [Sidey](https://github.com/ronv/sidey).
+This example showcases Next.js's [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using Markdown files as the data source.
 
-### Features
+The blog posts are stored in `/_posts` as Markdown files with front matter support. Adding a new Markdown file in there will create a new blog post.
 
-- [x] Responsive Design
-- [x] Dark/Ligh theme 🌗
-- [x] Inline CSS
-- [x] Anchor headings
-- [x] Tags & Tag pages 
-- [x] 404 page 
-- [x] Robots.txt 🤖
-- [x] Atom & Json feeds 📡
-- [x] Sass 
-- [x] About page, with Timeline! 🗣️
-- [x] PageSpeed and w3Validator tests PASSED ✔️
-- [x] Search bar 🔎
-- [x] Next & Previous Post ⏮️ ⏭️
-- [x] Automatic/Manual reading time estimation 🕐
-- [x] Disqus section ✍️ 
+To create the blog posts we use [`remark`](https://github.com/remarkjs/remark) and [`remark-html`](https://github.com/remarkjs/remark-html) to convert the Markdown files into an HTML string, and then send it down as a prop to the page. The metadata of every post is handled by [`gray-matter`](https://github.com/jonschlinkert/gray-matter) and also sent in props to the page.
 
+## Demo
 
-## Screenshot
+[https://next-blog-starter.vercel.app/](https://next-blog-starter.vercel.app/)
 
-![light-theme](https://github.com/P0WEX/Gesko/blob/master/light-theme.jpg)
-![dark-theme](https://github.com/P0WEX/Gesko/blob/master/dark-theme.jpg)
+## Deploy your own
 
-## Installation
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-Be sure to have all [you need](https://jekyllrb.com/docs/installation/) before running anything. 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/blog-starter&project-name=blog-starter&repository-name=blog-starter)
 
-Run local server:
+### Related examples
+
+- [WordPress](/examples/cms-wordpress)
+- [DatoCMS](/examples/cms-datocms)
+- [Sanity](/examples/cms-sanity)
+- [TakeShape](/examples/cms-takeshape)
+- [Prismic](/examples/cms-prismic)
+- [Contentful](/examples/cms-contentful)
+- [Strapi](/examples/cms-strapi)
+- [Agility CMS](/examples/cms-agilitycms)
+- [Cosmic](/examples/cms-cosmic)
+- [ButterCMS](/examples/cms-buttercms)
+- [Storyblok](/examples/cms-storyblok)
+- [GraphCMS](/examples/cms-graphcms)
+- [Kontent](/examples/cms-kontent)
+
+## How to use
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
 ```bash
-$ git clone https://github.com/P0WEX/Gesko.git
-$ cd Gesko
-$ bundle install
-$ bundle exec jekyll build
-$ bundle exec jekyll serve
+npx create-next-app --example blog-starter blog-starter-app
+# or
+yarn create next-app --example blog-starter blog-starter-app
 ```
 
-Navigate to `localhost:4000`. You're Welcome, Fork and be Stargazer.
-If you want to upload it to Github Pages, remember to update the `_congif.yml` and if you are going to upload in a repo called yournickname.github.io, remember to update the `{{ site.baseurl }}` to `{{ site.url }}` .
-Note that there is also a gtag in the [`_layouts/default.html`](https://github.com/P0WEX/Gesko/blob/6776e4afc384dc3d50ce2001715929c8e70a914c/_layouts/default.html#L9), you should remove it.
+Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
 
-To create new tag, create a folder in `tag/` with the name of the new one. In this folder add an `index.html` file and just add this header:
-```
----
-layout: tag
-tag: yourNewTag
----
-```
-Then build again and you're ready!!
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
-## Contributing
+# Notes
 
-Yeaaa feel free to open a pull request.
-
-
-If you see any typos or formatting errors in a post, or want to helping reduce backlogs or any other issue that needs to be addressed, please do not hesitate to open a pull request and fix it!, please read [contributing](./CONTRIBUTING.md) before PR.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE.md).
+This blog-starter uses [Tailwind CSS](https://tailwindcss.com). To control the generated stylesheet's filesize, this example uses Tailwind CSS' v2.0 [`purge` option](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) to remove unused CSS.
