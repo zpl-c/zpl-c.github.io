@@ -31,14 +31,15 @@ Example call:
 ```
 
 As we can see, this new function reduces the amount of code needed to perform lookups on ADT nodes. It is also much more readable and easy to understand.
+
+Feel free to check out the [json_get.c](https://github.com/zpl-c/zpl/blob/master/code/apps/examples/json_get.c) example code.
+
 We also plan to implement a sscanf alike addition to this API later on, example:
 ```c
 {
   zpl_adt_get(obj, "/settings/title:%s/x:%d/y:%d/modes/[name=enhanced]:%n", title_str, &x, &y, node_ptr);
 }
 ```
-
-Feel free to check out the [json_get.c](https://github.com/zpl-c/zpl/blob/master/code/apps/examples/json_get.c) example code.
 
 ## Parser improvements
 
