@@ -1,5 +1,5 @@
-# Build Jekyll and Deploy to Github Pages
-name: Jekyll site CI
+﻿# Build blog and Deploy to Github Pages
+name: Build blog
 
 on:
   workflow_dispatch:
@@ -18,17 +18,14 @@ jobs:
     - uses: actions/checkout@v2
 
     # Build
-    - name: 👷 Build the site in the jekyll container 
+    - name: 👷 Build the site for deployment use
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll \
-        -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll &&\
-        jekyll build --future -d build"
-    
+        npm install \
+        npm run export
+
     # Deploy to gh-pages branch
     - name: 🚀 Deploy to Github Pages
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: gh-pages # The branch the action should deploy to.
-        folder: build # The folder the action should deploy.
+        folder: out # The folder the action should deploy.
