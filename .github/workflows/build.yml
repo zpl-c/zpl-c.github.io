@@ -28,5 +28,5 @@ jobs:
 
     # Deploy to gh-pages branch
     - name: 🚀 Deploy to Github Pages
-    run: |
+      run: |
         npm run deploy
