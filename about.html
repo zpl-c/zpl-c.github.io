@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+<section class="post">
+  <div class="flex-row-between">
+      <a href="{{ site.url }}{{ site.baseurl }}/">« Home</a>
+    <button title="Change theme" id="theme-toggle" onclick="modeSwitcher()">
+      <div></div>
+    </button>
+  </div>
+</section>
+
+<section>
+    <!-- The Timeline -->
+
+    <ul class="timeline">
+
+        <!-- librg (new) -->
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="flag">librg: redefined!</span>
+                    <span class="time-wrapper"><span class="time">Jan 2020 - now</span></span>
+                </div>
+                <div class="desc">
+                    This moment has shaped librg into a powerful library with a simple purpose: Entity data streaming.
+                    Narrowing the scope down to entity streaming, we've optimized our library for use in
+                    any environment desired. librg would allow us to pack streamable data within a grid-based world without dependency on networking setup or user application.
+                </div>
+            </div>
+        </li>
+
+        <!-- librg -->
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="flag">Bye C++, hello C99!</span>
+                    <span class="time-wrapper"><span class="time">Jul 2017</span></span>
+                </div>
+                <div class="desc">
+                    We've decided to reboot ReGuider Framework under a new name: librg.
+                    This rewrite would drop support for scripting and resource management in favor of more flexible
+                    and powerful entity data streaming. It relied on a networking library called <a href="https://github.com/zpl-c/enet" target="_blank">ENet</a>
+                    which would connect players together and stream entity data on a grid-based world. We've used this iteration of a library on
+                    a project called <a href="https://youtu.be/2s3Ox5_4rQo" target="_blank">Mafia Oakwood</a> which was an unofficial multi-player modification for a legendary game.
+                </div>
+            </div>
+        </li>
+
+        <!-- zpl -->
+        <li>
+            <div class="direction-r">
+                <div class="flag-wrapper">
+                    <span class="flag">We've founded the zpl!</span>
+                    <span class="time-wrapper"><span class="time">2017 - now</span></span>
+                </div>
+                <div class="desc">
+                    A fork of <a href="https://github.com/gingerBill/gb" target="_blank">gingerBill's gb</a> library, <a href="https://github.com/zpl-c/zpl" target="_blank">zpl</a> has shaped up to provide a wide range
+                    of additions, improvements and design changes that would improve C/C++ development. Over time,
+                    we've implemented a support for various platforms and architectures. The library went through many changes until
+                    it became the ❤ of our organisation.
+                </div>
+            </div>
+        </li>
+
+
+        <!-- librg (legacy) -->
+        <li>
+            <div class="direction-l">
+                <div class="flag-wrapper">
+                    <span class="flag">Our legacy</span>
+                    <span class="time-wrapper"><span class="time">Jan 2017</span></span>
+                </div>
+                <div class="desc">
+                    The first version of our library, called <b>librg</b>, would surface under ReGuider Framework.
+                    Originally designed to provide a suite of tools used for game dev multiplayer development, it has handled
+                    a wide range of tasks, from creating a fully networked game session, scripting (Squirrel), and resource management
+                    to network-bind culling. We've used it internally to develop multiplayer solutions for our in-house projects.
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+</section>
+
+<section>
+  <nav class="post-nav" /nav>
+</section>
