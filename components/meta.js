@@ -3,7 +3,7 @@ import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants'
 
 export default function Meta() {
   return (
-    <Head>      
+    <Head>
       <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png" />
